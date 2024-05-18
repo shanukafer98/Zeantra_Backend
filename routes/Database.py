@@ -5,6 +5,10 @@ from bson import ObjectId
 import pymongo
 from datetime import datetime
 from typing import Optional
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 Database = APIRouter()
 
@@ -32,8 +36,8 @@ class Item(BaseModel):
     month: int
     year: int
 
-MONGO_URI = "mongodb+srv://shanukafer98:Mongodb123.@cluster0.gtbdj6v.mongodb.net/SSD"
-client = pymongo.MongoClient(MONGO_URI)
+
+client = pymongo.MongoClient(os.getenv("MONGO_URI"))
 db = client.get_database()
 
 COLLECTION_NAME6 = "Super_Store_Data"

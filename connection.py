@@ -1,14 +1,17 @@
 from fastapi import FastAPI, APIRouter, HTTPException
 import pandas as pd
 import pymongo
+import os
+from dotenv import load_dotenv
 
 AutomateRoute = APIRouter()
+load_dotenv()
+
 
 data= pd.read_csv('fullData.csv')
 
-MONGO_URI = "mongodb+srv://shanukafer98:Mongodb123.@cluster0.gtbdj6v.mongodb.net/SSD"
-MONGO_URI2 = "mongodb+srv://shanukafer98:Mongodb123.@cluster0.gtbdj6v.mongodb.net"
-client = pymongo.MongoClient(MONGO_URI)
+
+client = pymongo.MongoClient(os.gotenv("MONGO_URI")) 
 db = client.get_database()
 
 COLLECTION_NAME1 = "Charts"
